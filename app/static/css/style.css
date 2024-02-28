@@ -6,22 +6,7 @@ body {
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
       "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     
-  }
-  header {
-    background-color: rgb(188, 101, 47);
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-  }
-
-  img.logos {
-    width: 70px;
-    height: 70px;
-    float: left;
-    border-radius: 10%;
-  }
- 
-  
+  } 
  ul li {
     float: left;
     display: flow-root;
@@ -58,9 +43,9 @@ body {
   }
   .contain {
     position: relative;
-    height: 45px;
+    height: 40px;
     width: 90%;
-    margin-bottom: 17px;
+    margin-bottom: 20px;
   }
   .input{
     position: absolute;
@@ -81,14 +66,14 @@ body {
   }
 
 .select{
-    position: absolute;
+    position: relative;
     top: 15px;
     left: 15px;
     padding: 0 4px;
     background-color:rgb(224, 249, 249);
     color: #b5cbf8;
     font-size: 16px;
-    transition: 0.5s;
+    transition: 1s;
   }
   .submitBtn {
     display: block;

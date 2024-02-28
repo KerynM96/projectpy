@@ -7,20 +7,6 @@
     <title>Registro usuario</title>
 </head>
 <body>
-   
-        <header>
-            <img class="logos" src="./img/biblio.png" alt="logo">
-            <div id="menu">
-                <ul>
-                    <li><a href="">Inicio</a></li>
-                    <li><a href="">Reservas</a></li>
-                    <li><a href="">Libros</a></li>
-                    <li><a href="">Servicios</a></li>
-                </ul>
-            </div>
-               
-        </header>
-        
             <div class="name">
             <form action="" class="form">
             
@@ -28,47 +14,53 @@
                     <form>
             <div class="contain">
                 <p>
-                    <label class="select">Nombre libro</label>
-                    <input class="input"  type="text" name="txtnombre" maxlength="50" placeholder="Ingrese el nombre del libro" autofocus required/>
+                    <label class="select">Nombre</label>
+                    <input class="input"  type="text" name="txtname" maxlength="50" placeholder="Ingrese nombre" autofocus required/>
                 </p>
             </div>
                            
             <div class="contain">
                 <p>
-                    <label class="select">Genero literario</label>
-                    <input class="input" type="text" name="txtnombre" maxlength="50" placeholder="Ingrese el genero literario" autofocus required/>
+                    <label class="select">Apellido</label>
+                    <input class="input" type="text" name="txtlastname" maxlength="50" placeholder="Ingrese apellido" autofocus required/>
                 </p>
             </div>
             <div class="contain">
                 <p>
-                    <label class="select">Autor del libro</label>
-                    <input class="input" type="text" name="txtnombre" maxlength="50" placeholder="Ingrese el genero literario" autofocus required/>
+                    <label class="select">E-mail</label>
+                    <input class="input" type="email" name="txtmail" maxlength="50" placeholder="Ingrese e-mail" autofocus required/>
                 </p>
             </div>
             <div class="contain">
                 <p>
-                    <label class="select">Hora y fecha de registro</label>
-                    <input class="input" type="datetime" name="txtdatetime" placeholder="YYYY/MM/DD"/>
+                    <label class="select">Dirección</label>
+                    <input class="input" type="text" name="txtadress" maxlength="50" placeholder="Ingrese la dirección" autofocus required/>
                 </p>
             </div>
+    
             <div class="contain">
                 <p>
-                    <label class="select">Nombre de la persona que realiza el registro</label>
-                    <input class="input" name="txtnombre" maxlength="50" placeholder="Ingrese el nombre del libro" autofocus required/>
+                    <label class="select">Telefono</label>
+                    <input class="input" type="tel" name="txtnombre" maxlength="50" placeholder="Ingrese el telefono" autofocus required/>
+                </p>
+            </div>
+
+            <div class="contain">
+                <p>
+                    <label class="select">Ingrese nombre de usuario</label>
+                    <input class="input" type="text" name="txtusername" maxlength="50" placeholder="Ingrese usuario" autofocus required/>
                 </p>
             </div>
             
-            <div class="contain">
-                <label for="est">Seleccione el estado del libro</label>
-                    <select name="estado" id="est">
-                        <option value="nuevo">Nuevo</option>
-                        <option value="usado">Usado</option>
-                        <option value="deteriorado">Deteriorado</option>
-                    </select>
+            <div class="contain"> 
+                <p>
+                    <label class="select">Ingrese contraseña</label>
+                    <input class="input" type="password" name="txtusername" maxlength="50" placeholder="Ingrese usuario" autofocus required/>
+                </p>
             </div>
-                      
+           
             <div class="contain">
-            <input type="submit" class="submitBtn" value="Realizar registro">
+            <input type="submit" class="submitBtn" value="Registrar">
             
             </div>
         </form>
