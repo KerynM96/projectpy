@@ -1,6 +1,18 @@
 from flask import Flask,render_template
+import mysql.connector
+
 #Crear instancia 
 app = Flask (__name__)
+
+#configurar la conexion 
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="agenda2024" 
+)
+
+cursor = db.cursor()
 
 @app.route('/') #crear ruta
 def index():

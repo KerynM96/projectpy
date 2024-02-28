@@ -90,7 +90,7 @@ body {
   
   .submitBtn:hover {
     background-color: #9867C5;
-    transform: translateY(-2px);
+    transform: translateY(-5px);
   }
   .input:focus + .select{
     top: -7px;
