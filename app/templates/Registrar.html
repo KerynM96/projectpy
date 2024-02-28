@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app/static/css/style.css">
+    <title>Registro usuario</title>
+</head>
+<body>
+   
+        <header>
+            <img class="logos" src="./img/biblio.png" alt="logo">
+            <div id="menu">
+                <ul>
+                    <li><a href="">Inicio</a></li>
+                    <li><a href="">Reservas</a></li>
+                    <li><a href="">Libros</a></li>
+                    <li><a href="">Servicios</a></li>
+                </ul>
+            </div>
+               
+        </header>
+        
+            <div class="name">
+            <form action="" class="form">
+            
+                <h1>Formulario de registro</h1>
+                    <form>
+            <div class="contain">
+                <p>
+                    <label class="select">Nombre libro</label>
+                    <input class="input"  type="text" name="txtnombre" maxlength="50" placeholder="Ingrese el nombre del libro" autofocus required/>
+                </p>
+            </div>
+                           
+            <div class="contain">
+                <p>
+                    <label class="select">Genero literario</label>
+                    <input class="input" type="text" name="txtnombre" maxlength="50" placeholder="Ingrese el genero literario" autofocus required/>
+                </p>
+            </div>
+            <div class="contain">
+                <p>
+                    <label class="select">Autor del libro</label>
+                    <input class="input" type="text" name="txtnombre" maxlength="50" placeholder="Ingrese el genero literario" autofocus required/>
+                </p>
+            </div>
+            <div class="contain">
+                <p>
+                    <label class="select">Hora y fecha de registro</label>
+                    <input class="input" type="datetime" name="txtdatetime" placeholder="YYYY/MM/DD"/>
+                </p>
+            </div>
+            <div class="contain">
+                <p>
+                    <label class="select">Nombre de la persona que realiza el registro</label>
+                    <input class="input" name="txtnombre" maxlength="50" placeholder="Ingrese el nombre del libro" autofocus required/>
+                </p>
+            </div>
+            
+            <div class="contain">
+                <label for="est">Seleccione el estado del libro</label>
+                    <select name="estado" id="est">
+                        <option value="nuevo">Nuevo</option>
+                        <option value="usado">Usado</option>
+                        <option value="deteriorado">Deteriorado</option>
+                    </select>
+            </div>
+                      
+            <div class="contain">
+            <input type="submit" class="submitBtn" value="Realizar registro">
+            
+            </div>
+        </form>
+        </div>
+    </form>
+</body>
+</html>
