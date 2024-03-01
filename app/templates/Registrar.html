@@ -3,61 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
     <title>Registro usuario</title>
 </head>
 <body>
             <div class="name">
-            <form action="/Registrar" class="form" method="post">
+            <form action="/Registrar" class="form" method="POST">
             
                 <h1>Formulario de registro</h1>
                     <form>
             <div class="contain">
                 <p>
                     <label class="select">Nombre</label>
-                    <input class="input"  type="text" name="txtname" maxlength="50" placeholder="Ingrese nombre" required name="nombre" utofocus required/>
+                    <input class="input"  type="text"  maxlength="50" placeholder="Ingrese nombre" required name="nombre" utofocus required/>
                 </p>
             </div>
                            
             <div class="contain">
                 <p>
                     <label class="select">Apellido</label>
-                    <input class="input" type="text" name="txtlastname" maxlength="50" placeholder="Ingrese apellido" required name="apellido" autofocus required/>
+                    <input class="input" type="text"  maxlength="50" placeholder="Ingrese apellido" required name="apellido" autofocus required/>
                 </p>
             </div>
             <div class="contain">
                 <p>
                     <label class="select">E-mail</label>
-                    <input class="input" type="email" name="txtmail" maxlength="50" placeholder="Ingrese e-mail" required name="email" autofocus required/>
+                    <input class="input" type="email"  maxlength="50" placeholder="Ingrese e-mail" required name="email" autofocus required/>
                 </p>
             </div>
             <div class="contain">
                 <p>
                     <label class="select">Dirección</label>
-                    <input class="input" type="text" name="txtadress" maxlength="50" placeholder="Ingrese la dirección" required name="direccion" autofocus required/>
+                    <input class="input" type="text"  maxlength="50" placeholder="Ingrese la dirección" required name="direccion" autofocus required/>
+                </p>
+            </div>
+            <div class="contain">
+                <p>
+                    <label class="select">telefono</label>
+                    <input class="input" type="number"  maxlength="50" placeholder="Ingrese la dirección" required name="telefono" autofocus required/>
+                </p>
+            </div>
+            <div class="contain">
+                <p>
+                    <label class="select">usuario</label>
+                    <input class="input" type="text"  maxlength="50" placeholder="Ingrese la dirección" required name="usuario" autofocus required/>
+                </p>
+            </div>
+            <div class="contain">
+                <p>
+                    <label class="select">contraseña</label>
+                    <input class="input" type="password"  maxlength="50" placeholder="Ingrese la dirección" required name="password" autofocus required/>
                 </p>
             </div>
     
-            <div class="contain">
-                <p>
-                    <label class="select">Telefono</label>
-                    <input class="input" type="tel" name="txtnombre" maxlength="50" placeholder="Ingrese el telefono" required name="telefono " autofocus required/>
-                </p>
-            </div>
-
-            <div class="contain">
-                <p>
-                    <label class="select">Ingrese nombre de usuario</label>
-                    <input class="input" type="text" name="txtusername" maxlength="50" placeholder="Ingrese usuario" required name="usuario"autofocus required/>
-                </p>
-            </div>
-            
-            <div class="contain"> 
-                <p>
-                    <label class="select">Ingrese contraseña</label>
-                    <input class="input" type="password" name="txtusername" maxlength="50" placeholder="Ingrese usuario" required name="password" autofocus required/>
-                </p>
-            </div>
+           
            
             <div class="contain">
             <input type="submit" class="submitBtn" value="Registrar">

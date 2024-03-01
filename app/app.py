@@ -1,4 +1,4 @@
-from flask import *
+from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 
 # Crear instancia
@@ -18,21 +18,24 @@ cursor = db.cursor()
 def index():
     return render_template('index.html')
 
-@app.route('/Registrar', methods=['POST'])
+@app.route('/Registrar', methods=['GET', 'POST'])
 def registrar_usuario():
-    Nombres = request.form['nombre']
-    Apellidos = request.form['apellido']
-    email = request.form['email']
-    Direccion = request.form['direccion']
-    Telefono = request.form['telefono']
-    Usuario = request.form['usuario']
-    Password = request.form['password']
+    if request.method == 'POST':
+       Nombres = request.form.get('nombre')
+       Apellidos = request.form.get('apellido')
+       email = request.form.get('email')
+       Direccion = request.form.get('direccion')
+       Telefono = request.form.get('telefono')
+       Usuario = request.form.get('usuario')
+       Password = request.form.get('password')
     
-    # Insertar datos a la tabla de mysql
-    cursor.execute("INSERT INTO personas(nombrep, apellidop, emailp, dirp, telp, usup, passp) VALUES (%s, %s, %s, %s, %s, %s, %s)", (Nombres, Apellidos, email, Direccion, Telefono, Usuario, Password))
-    db.commit()
-    
-    return redirect(url_for('index'))
+        # Insertar datos a la tabla de mysql
+       cursor.execute("INSERT INTO personas(nombrep,apellidop,emailp,dirp,telp,usup,passp) VALUES (%s,%s,%s,%s,%s,%s,%s)", (Nombres,Apellidos,email,Direccion,Telefono,Usuario,Password))
+       db.commit()
+
+            
+       return redirect(url_for('registrar_usuario'))  # Redirigir a la página principal
+    return render_template("Registrar.html")
 
 # Ejecutar app
 if __name__ == '__main__':
