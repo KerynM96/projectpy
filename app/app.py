@@ -9,7 +9,7 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
-    database="agenda2024"
+    database="agenda2025"
 )
 
 cursor = db.cursor()
@@ -20,7 +20,7 @@ def lista():
     cursor.execute('SELECT * FROM personas')
     usuario = cursor.fetchall()
 
-    return render_template('index.html' ,usuario=usuario)
+    return render_template('index.html',usuario=usuario)
 
 @app.route('/Registrar', methods=['GET', 'POST'])
 def registrar_usuario():
@@ -41,6 +41,44 @@ def registrar_usuario():
        return redirect(url_for('registrar_usuario'))  # Redirigir a la página principal
     return render_template("Registrar.html")
 
+@app.route('/editar/<int:id>',methods=['GET', 'POST'])
+def editar_usuario(id):
+    cursor = db.cursor()
+    if request.method == 'POST':
+        nombreper = request.form.get('nombreper')
+        apellidoper = request.form.get('apellidoper')
+        emailper = request.form.get('emailper')
+        dirper = request.form.get('dirper')
+        telper = request.form.get('telper')
+        usuper = request.form.get('usuper')
+        passper = request.form.get('passper')
+
+        sql = "UPDATE personas set nombreper=%s,apellidoper=%s,emailper=%s,dirper=%s,telper=%s,passper=%s,usuper%s where polper=%s"
+        cursor.execute(sql,(nombreper,apellidoper,emailper,telper,usuper,passper,dirper))
+        db.commit()
+        return redirect(url_for('lista'))
+    
+    else: 
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM personas WHERE polper=%s' ,(id,))
+        data = cursor.fetchall()
+
+        return render_template('editar.html', personas=data[0])
+
+@app.route("/eliminar/<int:id>", methods=['GET'])
+def eliminar_usuario(id):
+    cursor = db.cursor()
+    if request.method == 'POST':
+        nombreper = request.form.get('nombreper')
+        apellidoper = request.form.get('apellidoper')
+        emailper = request.form.get('emailper')
+        dirper = request.form.get('dirper')
+        telper = request.form.get('telper')
+        usuper = request.form.get('usuper')
+        passper = request.form.get('passper')
+
+    
+    return redirect(url_for('lista'))
 # Ejecutar app
 if __name__ == '__main__':
     app.add_url_rule('/',view_func=lista)
