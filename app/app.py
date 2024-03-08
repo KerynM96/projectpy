@@ -9,7 +9,7 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
-    database="agenda2025"
+    database="agenda2024"
 )
 
 cursor = db.cursor()
@@ -17,7 +17,7 @@ cursor = db.cursor()
 @app.route('/')  # Crear ruta
 def lista():
     cursor = db.cursor()
-    cursor.execute('SELECT * FROM personas')
+    cursor.execute('SELECT * FROM persona')
     usuario = cursor.fetchall()
 
     return render_template('index.html',usuario=usuario)
@@ -34,11 +34,11 @@ def registrar_usuario():
        Password = request.form.get('password')
     
         # Insertar datos a la tabla de mysql
-       cursor.execute("INSERT INTO personas(nombrep,apellidop,emailp,dirp,telp,usup,passp) VALUES (%s,%s,%s,%s,%s,%s,%s)",(Nombres,Apellidos,email,Direccion,Telefono,Usuario,Password))
+       cursor.execute("INSERT INTO persona(nombrep, apellidop, email, dirp, tel, usup, pass) VALUES (%s, %s, %s, %s, %s, %s, %s)", (Nombres, Apellidos, email, Direccion, Telefono, Usuario, Password))
        db.commit()
 
             
-       return redirect(url_for('registrar_usuario'))  # Redirigir a la página principal
+       return redirect(url_for('lista'))  # Redirigir a la página principal
     return render_template("Registrar.html")
 
 @app.route('/editar/<int:id>',methods=['GET', 'POST'])
@@ -53,19 +53,19 @@ def editar_usuario(id):
         usuper = request.form.get('usuper')
         passper = request.form.get('passper')
 
-        sql = "UPDATE personas set nombreper=%s,apellidoper=%s,emailper=%s,dirper=%s,telper=%s,passper=%s,usuper%s where polper=%s"
-        cursor.execute(sql,(nombreper,apellidoper,emailper,telper,usuper,passper,dirper))
+        sql = "UPDATE persona SET nombrep=%s, apellidop=%s, email=%s, dirp=%s, tel=%s, usup=%s, pass=%s WHERE polper=%s"
+        cursor.execute(sql,(nombreper,apellidoper,emailper, dirper,telper,usuper,passper,id,))
         db.commit()
         return redirect(url_for('lista'))
     
     else: 
         cursor = db.cursor()
-        cursor.execute('SELECT * FROM personas WHERE polper=%s' ,(id,))
+        cursor.execute('SELECT * FROM persona WHERE polper=%s' ,(id,))
         data = cursor.fetchall()
 
         return render_template('editar.html', personas=data[0])
 
-@app.route("/eliminar/<int:id>", methods=['GET'])
+@app.route("/eliminar/<int:id>", methods=['GET', 'POST'])
 def eliminar_usuario(id):
     cursor = db.cursor()
     if request.method == 'POST':
@@ -76,8 +76,9 @@ def eliminar_usuario(id):
         telper = request.form.get('telper')
         usuper = request.form.get('usuper')
         passper = request.form.get('passper')
+        
+    cursor.execute('DELETE FROM persona WHERE polper=%s', (id,))
 
-    
     return redirect(url_for('lista'))
 # Ejecutar app
 if __name__ == '__main__':
