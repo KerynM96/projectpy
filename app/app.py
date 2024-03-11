@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify,session
 import mysql.connector
+import bcrypt
 
 # Crear instancia
 app = Flask(__name__)
@@ -13,6 +14,32 @@ db = mysql.connector.connect(
 )
 
 cursor = db.cursor()
+
+def encriptarcontra(contraencrip):
+    
+    encriptar = bcrypt.hashpw(contraencrip.encode('utf-8'),bcrypt.gensalt())
+    
+    return encriptar
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('txtusuario')
+        password = request.form.get('txtcontrasena')
+        
+        cursor =db.cursor()
+        cursor.execute('SELECT * FROM persona where usup = %s',(username,))
+        usuarios = cursor.fetchone()
+        
+        if usuarios and bcrypt.check_password_hash(usuarios[7],password):
+            session['usuario'] = username
+            return redirect(url_for('lista'))
+        else:
+            error = 'credenciales invalidas. por favor intente de nuevo'
+            return render_template('login.html', error=error)
+        
+    return render_template('login.html')
+        
 
 @app.route('/')  # Crear ruta
 def lista():
@@ -32,9 +59,12 @@ def registrar_usuario():
        Telefono = request.form.get('telefono')
        Usuario = request.form.get('usuario')
        Password = request.form.get('password')
+       
+       encryptpassword = encriptarcontra(Password)
+       
     
         # Insertar datos a la tabla de mysql
-       cursor.execute("INSERT INTO persona(nombrep, apellidop, email, dirp, tel, usup, pass) VALUES (%s, %s, %s, %s, %s, %s, %s)", (Nombres, Apellidos, email, Direccion, Telefono, Usuario, Password))
+       cursor.execute("INSERT INTO persona(nombrep, apellidop, email, dirp, tel, usup, pass) VALUES (%s, %s, %s, %s, %s, %s, %s)", (Nombres, Apellidos, email, Direccion, Telefono, Usuario, encryptpassword))
        db.commit()
 
             
@@ -80,6 +110,7 @@ def eliminar_usuario(id):
     cursor.execute('DELETE FROM persona WHERE polper=%s', (id,))
 
     return redirect(url_for('lista'))
+        
 # Ejecutar app
 if __name__ == '__main__':
     app.add_url_rule('/',view_func=lista)

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app/static/css/login.css">
+    
+
+    <title>Ingresar</title>
+</head>
+<body>
+    <div class="name">
+        <form action="/login" class="form" method="POST">
+        
+            <h1>Formulario de registro</h1>
+                <form>
+        <div class="contain">
+            <p>
+                <label class="select">Usuario</label>
+                <input class="input"  type="text" name="txtusuario" required/>
+            </p>
+        </div>
+                       
+            <p>
+                <label class="select">contraseña</label>
+                <input class="input" type="password" name="txtcontrasena" required/>
+            </p>
+        </div>
+
+        <div class="contain">
+        <input type="submit" class="submitBtn" value="Ingresar">
+        
+        </div>
+    </form>
+    </div>
+</form>
+</body>
+</html>
