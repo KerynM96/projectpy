@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify,session
 import mysql.connector
 import bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Crear instancia
 app = Flask(__name__)
-
+app.secret_key = '789456123'
 # Configurar la conexión
 db = mysql.connector.connect(
     host="localhost",
@@ -14,12 +15,14 @@ db = mysql.connector.connect(
 )
 
 cursor = db.cursor()
-
+@app.route('/password/<contraencrip>')
 def encriptarcontra(contraencrip):
+    #generar un hash de la contraseña
+    #encriptar = bcrypt.hashpw(contraencrip.encode('utf-8'),bcrypt.gensalt())
+    encriptar= generate_password_hash(contraencrip)
+    value= check_password_hash(encriptar,contraencrip)
     
-    encriptar = bcrypt.hashpw(contraencrip.encode('utf-8'),bcrypt.gensalt())
-    
-    return encriptar
+    return "Encriptado:{0} | coincide:{1}".format(encriptar,value)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -28,10 +31,10 @@ def login():
         password = request.form.get('txtcontrasena')
         
         cursor =db.cursor()
-        cursor.execute('SELECT * FROM persona where usup = %s',(username,))
+        cursor.execute("SELECT usup,pass FROM persona WHERE usup = %s",(username,))
         usuarios = cursor.fetchone()
         
-        if usuarios and bcrypt.check_password_hash(usuarios[7],password):
+        if usuarios or encriptarcontra(password) == usuarios[1]:
             session['usuario'] = username
             return redirect(url_for('lista'))
         else:

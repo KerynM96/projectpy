@@ -1,6 +1,6 @@
 body {
     box-sizing: border-box;
-    background-color: white;
+    background-color: rgb(86, 11, 121);
     margin: 0;
     padding: 0;
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -36,16 +36,19 @@ body {
 
   .form{
     background-color: rgb(224, 249, 249);
-    width: 600px;
+    
+    width: 500px;
      border-radius: 10px;
      padding: 20px 40px;
      box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
   }
   .contain {
     position: relative;
-    height: 40px;
+    height: 25px;
     width: 90%;
-    margin-bottom: 20px;
+    margin: 25px;
+
+    display:inline-flexbox;
   }
   .input{
     position: absolute;
@@ -65,15 +68,15 @@ body {
     color: transparent;
   }
 
-.select{
+  .select{
     position: relative;
-    top: 15px;
-    left: 15px;
-    padding: 0 4px;
-    background-color:rgb(224, 249, 249);
-    color: #b5cbf8;
-    font-size: 16px;
-    transition: 1s;
+    top: -25px;
+    padding: 0 15px;
+    background-color:#e0f9f9;
+    color: #5d1a94;
+    font-size: 12px;
+    transition: 0.5s;
+    
   }
   .submitBtn {
     display: block;

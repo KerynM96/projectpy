@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app/static/css/login.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
     
 
     <title>Ingresar</title>
@@ -20,7 +20,7 @@
                 <input class="input"  type="text" name="txtusuario" required/>
             </p>
         </div>
-                       
+        <div class="contain">         
             <p>
                 <label class="select">contraseña</label>
                 <input class="input" type="password" name="txtcontrasena" required/>
