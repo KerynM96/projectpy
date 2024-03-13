@@ -8,7 +8,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Usuarios</h1>
+        <h1>Bienvenido, {{session['usuario']}}</h1>
+        <p>Ha iniciado sesión</p>
+        <a href="/logout">Cerrar sesión</a>
+        <h1>Lista de usuarios</h1>
     <table>
         <tr>
             <th>Codigo</th>
