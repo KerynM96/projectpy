@@ -46,9 +46,10 @@ def login():
 
 @app.route('/logout')
 def logout():
-          #Eliminar el usuario de la sesión
-          session.pop['usuario', None]
-          return redirect/url_for(('login'))
+    # Eliminar el usuario de la sesión
+    session.pop('usuario', None)
+    return redirect(url_for('login'))
+
 
 @app.route('/')  # Crear ruta
 def lista():
