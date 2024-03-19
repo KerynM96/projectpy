@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/Registro.css')}}">
+    <title>Registro usuario</title>
+</head>
+<body>
+    <div class="name">
+        <form action="/Registro" class="form" method="POST">
+        
+            <h1>Formulario de registro de canciones</h1>
+                <form>
+        <div class="contain">
+            <p>
+                <label class="select">Titulo canción</label>
+                <input class="input"  type="text"  maxlength="50" placeholder="Ingrese nombre" required name="song-name" utofocus required/>
+            </p>
+        </div>
+                       
+        <div class="contain">
+            <p>
+                <label class="select">Nombre del artista</label>
+                <input class="input" type="text"  maxlength="50" placeholder="Ingrese apellido" required name="artist-name" autofocus required/>
+            </p>
+        </div>
+        <div class="contain">4
+            <p>
+                <label class="select">Genero musical</label>
+                <input class="input" type="email"  maxlength="50" placeholder="Ingrese e-mail" required name="musical-gender" autofocus required/>
+            </p>
+        </div>
+        <div class="contain">
+            <p>
+                <label class="select">Duración</label>
+                <input class="input" type="number"  maxlength="50" placeholder="Ingrese la dirección" required name="time" autofocus required/>
+            </p>
+        </div>
+        <div class="contain">
+            <p>
+                <label class="select">Fecha de lanzamiento</label>
+                <input class="input" type="date"  maxlength="50" placeholder="Ingrese la dirección" required name="start-date" autofocus required/>
+            </p>
+        </div>
+        <div class="contain">
+            <p>
+                <label class="select">Imagen</label>
+                <input class="input" type="img"  maxlength="50" placeholder="Ingrese la dirección" required name="image" autofocus required/>
+            </p>
+        </div>
+
+        <div class="contain">
+        <input type="submit" class="submitBtn" value="Realizar registro">
+        
+        </div>
+    </form>
+    </div>
+</form>
+</body>
+</html>
