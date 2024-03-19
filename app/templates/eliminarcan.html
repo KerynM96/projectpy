@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="name">
+        <form action="/eliminar" class="form" method="POST">
+        
+            <h1>Eliminar canción</h1>
+                <form>
+        <div class="contain">
+            <p>
+                <label class="select">Por favor escribe el titulo de la canción</label>
+                <input class="input"  type="text"  maxlength="50" placeholder="Nombre de canción" required name="nombre" utofocus required/>
+            </p>
+        </div>
+
+        <select class="delete" name="select"  txt="roles">
+            <option value="value1"selected>Desea eliminarlo de manera permanente?</option>
+            <option value="value2" >Si</option>
+            <option value="value3">No</option>
+          </select>
+        <div class="contain">
+        <input type="submit" class="submitBtn" value="Enviar">
+        
+        </div>
+</body>
+</html>
+<div class="container">
+    <h1>Bienvenido, {{session['usuario']}}</h1>
+    <p>Ha iniciado sesión</p>
+    <a href="/eliminar_cancion">Cerrar sesión</a>
+    <h1>Lista de usuarios</h1>
+<table>
+    <tr>
+        <th>Codigo</th>
+        <th>Titulo canción</th>
+        <th>Nombre del artista</th>
+        <th>Genero musical</th>
+        <th>Duración</th>
+        <th>Fecha de lanzamiento</th>
+        <th>Imagen</th>
+        <th>Opciones</th>
+        <th></th>
+    </tr>
+        <tbody>
+            {% for usuario in usuario %}
+        <tr>
+            <td>{{usuario[0]}}</td>
+            <td>{{usuario[1]}}</td>
+            <td>{{usuario[2]}}</td>
+            <td>{{usuario[3]}}</td>
+            <td>{{usuario[4]}}</td>
+            <td>{{usuario[5]}}</td>
+            <td>{{usuario[6]}}</td>
+            <td>
+                <a href="{{ url_for('cancelar', id=usuario[0])}}">Cancelar</a>
+            </td>
+            <td>
+                <a href="{{ url_for('eliminar_cancion', id=usuario[0]) }}">Eliminar</a>
+            </td>
+            
+        </tr>
+            {% endfor %}
+        </tbody>
+    
+</table>
+
+</div>

@@ -32,12 +32,17 @@ def login():
         password = request.form.get('txtcontrasena')
         
         cursor =db.cursor()
-        cursor.execute("SELECT usup, pass FROM persona WHERE usup = %s",(username,))
+        sql = ("SELECT usup, pass FROM persona WHERE usup = %s")
+        cursor.execute(sql,(username,))
         usuarios = cursor.fetchone()
         
-        if usuarios or check_password_hash(usuarios[1], password):
-            session['usuario'] = username
-            return redirect(url_for('lista'))
+        if usuarios or check_password_hash(usuarios['pass'], password):
+            session['usuario'] = username ['usup']
+            session['rol'] = ['roles']
+            if usuarios['roles'] == 'administrator':
+                return redirect(url_for('lista'))
+            else:
+                return redirect(url_for('actualizar'))
         else:
             print("Credenciales invalidas")
             print("Credenciales invalidas. Por favor intentelo de nuevo")
@@ -125,7 +130,40 @@ def eliminar_usuario(id):
     cursor.close()
 
     return redirect(url_for('lista'))
-        
+
+@app.route('/eliminar_cancion/<int:id>',methods=['GET', 'POST'])
+def cancelar(id):
+    cursor = db.cursor()
+    if request.method == 'POST':
+        idcan = request.form.get('id_can')
+        tituloc = request.form.get('titulo')
+        artistac = request.form.get('artista')
+        generoc = request.form.get('genero')
+        precioc = request.form.get('precio')
+        duracionc = request.form.get('duracion')
+        lanzamientoc = request.form.get('lanzamiento')
+        imgc = request.form.get('img')
+
+        sql = "UPDATE canciones SET  titulo=%s, artista=%s, genero=%s, precio=%s, duracion=%s, lanzamiento=%s, img=%s WHERE id_can=%s,"
+        cursor.execute(sql,(tituloc, artistac, generoc, precioc, duracionc,lanzamientoc,imgc,id,))
+        db.commit()
+        return redirect(url_for('lista'))
+    
+    else: 
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM persona WHERE id_can=%s' ,(id,))
+        data = cursor.fetchall()
+
+        return render_template('actualizar.html', persona=data[0])
+
+@app.route("/eliminar/<int:id>", methods=['GET', 'POST'])
+def eliminar_cancion(id):
+    cursor = db.cursor()    
+    cursor.execute('DELETE FROM persona WHERE polper=%s', (id,))
+    db.commit()
+    cursor.close()
+
+    return redirect(url_for('lista'))       
 # Ejecutar app
 if __name__ == '__main__':
     app.add_url_rule('/',view_func=lista)

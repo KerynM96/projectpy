@@ -22,6 +22,7 @@
             <th>Telefono</th>
             <th>Usuario</th>
             <th>Acciones</th>
+            <th></th>
         </tr>
             <tbody>
                 {% for usuario in usuario %}
@@ -35,8 +36,11 @@
                 <td>{{usuario[6]}}</td>
                 <td>
                     <a href="{{ url_for('editar_usuario', id=usuario[0])}}">Editar</a>
+                </td>
+                <td>
                     <a href="{{ url_for('eliminar_usuario', id=usuario[0]) }}">Eliminar</a>
                 </td>
+                
             </tr>
                 {% endfor %}
             </tbody>

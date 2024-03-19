@@ -12,11 +12,12 @@ body {
     color: rgb(250, 244, 244);
     font-size: 200%;
   }
+
   a {
 	text-decoration: none;
 	color: #fcf7f7;
-	margin: 20px;
-	padding: 30px;
+	
+	
   }
 table {
 	width: 800px;
