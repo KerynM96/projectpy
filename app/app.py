@@ -31,22 +31,23 @@ def login():
         username = request.form.get('txtusuario')
         password = request.form.get('txtcontrasena')
         
-        cursor =db.cursor()
-        sql = ("SELECT usup, pass FROM persona WHERE usup = %s")
+        cursor =db.cursor(dictionary=True)
+        sql = "SELECT usup, pass, roles  FROM persona WHERE usup = %s"
         cursor.execute(sql,(username,))
         usuarios = cursor.fetchone()
         
-        if usuarios or check_password_hash(usuarios['pass'], password):
+        if usuarios and check_password_hash(usuarios['pass'], password):
             session['usuario'] = username ['usup']
-            session['rol'] = ['roles']
+            session['rol'] = username['roles']
             
-            if usuarios['roles'] == 'administrator':
+            if usuarios['roles'] == 'administrador':
                 return redirect(url_for('lista'))
-            else:
-                return redirect(url_for('actualizar'))
         else:
-            print("Credenciales invalidas")
+            return redirect(url_for('mostrarcanciones'))
+                
+    else:
             print("Credenciales invalidas. Por favor intentelo de nuevo")
+                
             return render_template('login.html')
     return render_template('login.html')
 
@@ -76,6 +77,7 @@ def registrar_usuario():
        Telefono = request.form.get('telefono')
        Usuario = request.form.get('usuario')
        Password = request.form.get('password')
+       Rol= request.form.get('txtrol')
        
        #Encriptar la contraseña
        encryptpassword = generate_password_hash(Password)
@@ -90,8 +92,8 @@ def registrar_usuario():
     
         # Insertar datos a la tabla de mysql
       
-       cursor.execute("INSERT INTO persona(nombrep, apellidop, email, dirp, tel, usup, pass) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-        (Nombres,Apellidos,email,Direccion, Telefono, Usuario, encryptpassword))
+       cursor.execute("INSERT INTO persona(nombrep, apellidop, email, dirp, tel, usup, pass, roles) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+        (Nombres,Apellidos,email,Direccion, Telefono, Usuario, encryptpassword, Rol))
        db.commit()
 
             
@@ -151,7 +153,7 @@ def registro_cancion():
         cursor = db.cursor()
 
         
-        cursor.execute("INSERT INTO canciones (titulo, artista, genero, precio, duracion, lanzamiento,img) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+        cursor.execute("INSERT INTO canciones (titulo, artista, genero, precio, duracion, lanzamiento,img) VALUES (%s,%s,%s,%s,%s,%s,%s)",
                        (idcan,tituloc, artistac, generoc, precioc, duracionc,lanzamientoc,imgc,imagenblob))
         db.commit()
         return redirect(url_for('registro_cancion'))
